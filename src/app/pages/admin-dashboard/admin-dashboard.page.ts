@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -8,13 +9,17 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class AdminDashboardPage implements OnInit {
 
-  constructor(private auth: AuthService) { }
+  constructor(private auth: AuthService ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   signOut(){
     this.auth.signOut();
+  }
+
+  public should_open = false;
+  openOrar(){
+    this.should_open = true;
   }
 
 }

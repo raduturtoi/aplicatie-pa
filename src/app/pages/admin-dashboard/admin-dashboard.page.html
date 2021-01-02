@@ -10,6 +10,22 @@
 </ion-header>
 
 <ion-content>
-    <ion-button expand="full" (click)="openSchedule = !openSchedule">ORAR</ion-button>
-    <app-orar *ngIf="openSchedule"> </app-orar>
+    <ion-list>
+      <ion-item routerLink="schedule" detail>
+        <ion-icon name="albums-outline" style="margin-right: 10px"></ion-icon>
+        <ion-label>Orar</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Mega Man X</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>The Legend of Zelda</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Pac-Man</ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-label>Super Mario World</ion-label>
+      </ion-item>
+    </ion-list>
 </ion-content>

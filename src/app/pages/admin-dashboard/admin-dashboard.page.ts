@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./admin-dashboard.page.scss'],
 })
 export class AdminDashboardPage implements OnInit {
-
+  public openSchedule: boolean = false;
   constructor(private auth: AuthService ) { }
 
   ngOnInit() {}
@@ -17,9 +17,5 @@ export class AdminDashboardPage implements OnInit {
     this.auth.signOut();
   }
 
-  public should_open = false;
-  openOrar(){
-    this.should_open = true;
-  }
 
 }

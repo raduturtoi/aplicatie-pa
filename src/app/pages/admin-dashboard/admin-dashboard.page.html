@@ -10,13 +10,6 @@
 </ion-header>
 
 <ion-content>
-
-    <ion-button (click)="openOrar()">ORAR</ion-button>
-    <div id="render-orar " *ngIf = "should_open">
-      <!--aici mai e de lucru :??-->
-      <app-orar> </app-orar>
-    </div>
-
-    
-
+    <ion-button expand="full" (click)="openSchedule = !openSchedule">ORAR</ion-button>
+    <app-orar *ngIf="openSchedule"> </app-orar>
 </ion-content>

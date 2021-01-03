@@ -5,21 +5,44 @@
 </ion-header>
 
 <ion-content padding>
+  <form [formGroup]="registerForm">
+  <ion-item>
+    <ion-label position="stacked">Cod invitatie</ion-label>
+    <ion-input type="text" placeholder="cod secret" formControlName="inviteCode"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Nume</ion-label>
+    <ion-input type="text" placeholder="Nume" formControlName="lastName"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label position="stacked">Prenume</ion-label>
+    <ion-input type="text" placeholder="Prenume" formControlName="firstName"></ion-input>
+  </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
-    <ion-input type="email" placeholder="Email" [(ngModel)]="user.email"></ion-input>
+    <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
   </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Parola</ion-label>
-    <ion-input type="password" placeholder="" [(ngModel)]="user.pw"></ion-input>
+    <ion-input type="password" placeholder="Parola" formControlName="password"></ion-input>
   </ion-item>
   <ion-item>
     <ion-label position="stacked">Confirma parola</ion-label>
-    <ion-input type="password" placeholder="" [(ngModel)]="user.pw"></ion-input>
+    <ion-input type="password" placeholder="Confirma Parola" formControlName="confirmPassword"></ion-input>
   </ion-item>
 
-  <ion-button expand="block" (click)="register()">Inregistrare</ion-button>
+
+  <ion-button expand="block" (click)="register()" [disabled]="!registerForm.valid">Inregistrare</ion-button>
+  <hr>
+  <div class="error-message" 
+        *ngIf="registerForm.hasError('passwordNotMatch') && 
+               (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
+      Parola si Parola de confirmare nu se potrivesc!
+    </div>
+</form>
 
 </ion-content>

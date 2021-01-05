@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth.service';
+
 
 @Component({
   selector: 'app-register',
@@ -8,7 +10,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private auth: AuthService) { }
 
   ngOnInit() {
     this.registerForm = this.fb.group({
@@ -28,6 +30,14 @@ export class RegisterPage implements OnInit {
     const { value: password } = formGroup.get('password');
     const { value: confirmPassword } = formGroup.get('confirmPassword');
     return password === confirmPassword ? null : { passwordNotMatch: true };
+  }
+
+  register(){
+
+  }
+
+  signOut(){
+    this.auth.signOut();
   }
 
 }

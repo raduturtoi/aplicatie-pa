@@ -3,6 +3,10 @@ import { BehaviorSubject, from, Observable, of } from 'rxjs';
 import { Storage } from '@ionic/storage';
 import { Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { RegisterUserInterface } from '../models/registerUser';
+
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 const TOKEN_KEY = 'user-token';
 
@@ -14,7 +18,7 @@ export class AuthService {
   user: Observable<any>;
   private authState = new BehaviorSubject(null);
 
-  constructor(private storage: Storage, private router: Router) { 
+  constructor(private storage: Storage, private router: Router, private http:HttpClient) { 
 
     this.loadUser();
 
@@ -63,6 +67,14 @@ export class AuthService {
         this.router.navigateByUrl("/login")
 
       }
+
+      public register(user: RegisterUserInterface): Observable < any >{
+
+          return this.http.post(environment.apiUrl + "register", user)
+
+      }
+
+
 
   }
  

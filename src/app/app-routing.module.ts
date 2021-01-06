@@ -28,7 +28,8 @@ const routes: Routes = [
     data: {
       role: 'USER'
     }
-  },  {
+  },
+  {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },

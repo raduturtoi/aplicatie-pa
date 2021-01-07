@@ -1,14 +1,15 @@
+
 <ion-header>
   <ion-toolbar color="primary">
     <ion-buttons slot="start">
-      <ion-button (click)="signOut()">
-        <ion-icon name="log-out"></ion-icon>
-      </ion-button>
+      <ion-menu-button><app-menu></app-menu></ion-menu-button>
     </ion-buttons>
+    <ion-button slot="end"  (click)="signOut()">
+      <ion-icon name="log-out"></ion-icon>
+    </ion-button>
     <ion-title>User Dashboard</ion-title>
   </ion-toolbar>
+
 </ion-header>
 
-<ion-content>
-
-</ion-content>
+<ion-content></ion-content>

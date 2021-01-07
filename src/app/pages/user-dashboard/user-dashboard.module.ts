@@ -8,13 +8,16 @@ import { UserDashboardPageRoutingModule } from './user-dashboard-routing.module'
 
 import { UserDashboardPage } from './user-dashboard.page';
 
+import { MenuComponent } from 'src/app/pages/user-dashboard/components/menu/menu.component'
+
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    UserDashboardPageRoutingModule
+    UserDashboardPageRoutingModule,
   ],
-  declarations: [UserDashboardPage]
+  declarations: [UserDashboardPage,
+                MenuComponent]
 })
 export class UserDashboardPageModule {}

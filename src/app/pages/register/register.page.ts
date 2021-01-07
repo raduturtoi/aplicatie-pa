@@ -21,9 +21,9 @@ export class RegisterPage implements OnInit {
         year = d.getFullYear();
 
     if (month.length < 2) 
-        month = '0' + month;
+        month = '2' + month;
     if (day.length < 2) 
-        day = '0' + day;
+        day = '2' + day;
 
     return [year, month, day].join('-');
 }

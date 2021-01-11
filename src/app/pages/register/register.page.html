@@ -1,4 +1,4 @@
-<ion-header>
+ <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Inregistrare</ion-title>
     <ion-button slot="start" routerLink="/login">
@@ -9,10 +9,6 @@
 
 <ion-content padding>
   <form [formGroup]="registerForm">
-  <ion-item>
-    <ion-label position="stacked">Cod invitatie</ion-label>
-    <ion-input type="text" placeholder="cod secret" formControlName="inviteCode"></ion-input>
-  </ion-item>
 
   <ion-item>
     <ion-label position="stacked">Nume</ion-label>
@@ -45,7 +41,7 @@
   </ion-item>
 
 
-  <ion-button expand="block" (click)="register()" [disabled]="!registerForm.valid">Inregistrare</ion-button>
+  <ion-button expand="block" (click)="register()">Inregistrare</ion-button>
   <hr>
   <div class="error-message" 
         *ngIf="registerForm.hasError('passwordNotMatch') && 
@@ -55,3 +51,5 @@
 </form>
 
 </ion-content>
+
+

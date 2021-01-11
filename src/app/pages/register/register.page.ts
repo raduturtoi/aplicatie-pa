@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
 
@@ -12,7 +13,7 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   maximDate: string;
   minimDate: string;
-  constructor(private fb: FormBuilder, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) { }
 
    formatDate(date) {
     var d = new Date(date),
@@ -58,7 +59,13 @@ export class RegisterPage implements OnInit {
   register(){
     this.auth.register(this.registerForm.value).subscribe(res => {
        console.log(res);
+       this.router.navigateByUrl('activate');
     })
+  }
+
+  slideOpts = {
+    initialSlide: 1,
+    speed: 400
   }
 
 }

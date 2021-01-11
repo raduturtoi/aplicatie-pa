@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthService }  from './../../services/auth.service'
 
 @Component({
@@ -10,8 +11,8 @@ import { AuthService }  from './../../services/auth.service'
 export class LoginPage implements OnInit {
 
   user = {
-    email: '',
-    pw: ''
+    username: '',
+    password: ''
   };
 
   constructor( private auth: AuthService , private router: Router) { }
@@ -20,10 +21,14 @@ export class LoginPage implements OnInit {
   }
 
   signIn(){
-      this.auth.signIn(this.user).subscribe(user => {
-        console.log('after login: ', user);
+      this.auth.signIn(this.user).subscribe(token=> {
+      
+        const helper = new JwtHelperService();
+        const tokenDecoded = helper.decodeToken(token.token);
 
-        let role = user['role'];
+        console.log(tokenDecoded);
+
+        let role =  tokenDecoded['role'];
         if( role == 'ADMIN') {
           this.router.navigateByUrl('/admin-dashboard');
         }else if( role == 'USER'){

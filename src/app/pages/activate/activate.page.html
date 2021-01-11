@@ -1,0 +1,19 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Activate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <form [formGroup]="registerForm">
+    <ion-item>
+      <ion-label position="stacked">Cod invitatie</ion-label>
+      <ion-input type="text" placeholder="cod secret" formControlName="inviteCode"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="activate()">Finalizare</ion-button>
+
+</form>
+
+
+</ion-content>

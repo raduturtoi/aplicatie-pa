@@ -17,32 +17,31 @@ const TOKEN_KEY = 'user-token';
 export class AuthService {
 
   user: Observable<any>;
-  private authState = new BehaviorSubject(null);
+  private authData = new BehaviorSubject(null);
 
   constructor(private storage: Storage, private router: Router, private http:HttpClient) { 
 
-    this.loadUser();
+    // this.loadUser();
 
-    this.user = this.authState.asObservable().pipe(
-      filter(response => response)
-    )
+    // this.user = this.authState.asObservable().pipe(
+    //   filter(response => response)
+    // )
   }
 
-  loadUser(){
+  // loadUser(){
 
-    this.storage.get(TOKEN_KEY).then(data => {
-      console.log('Load user: ' , data);
-      if(data) {
-        this.authState.next(data);
-      }else {
-        this.authState.next({username: null, role: null});
-      }
-    });
+  //   this.storage.get(TOKEN_KEY).then(data => {
+  //     console.log('Load user: ' , data);
+  //     if(data) {
+  //       this.authState.next(data);
+  //     }else {
+  //       this.authState.next({username: null, role: null});
+  //     }
+  //   });
 
-  }
+  // }
 
   signIn(user: LoginUserInterface): Observable<any> {
-
       // let email = credentials.email;
       // let pw = credentials.pw;
       // let user = null;
@@ -59,23 +58,17 @@ export class AuthService {
 
       //   return of(user);
 
-
       return this.http.post(environment.apiUrl + "/api/auth/login", user)
-
       }
 
       async signOut(){
-
         await this.storage.set(TOKEN_KEY, null);
-        this.authState.next(null);
         this.router.navigateByUrl("/login")
 
       }
 
       public register(user: RegisterUserInterface): Observable < any >{
-
           return this.http.post(environment.apiUrl + "/api/auth/invitation", user)
-
       }
 
 

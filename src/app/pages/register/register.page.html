@@ -1,13 +1,16 @@
  <ion-header>
   <ion-toolbar color="primary">
     <ion-title>Inregistrare</ion-title>
-    <ion-button slot="start" routerLink="/login">
+    <ion-button *ngIf="registerStep==0" slot="start" routerLink="/login">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button> 
+    <ion-button *ngIf="registerStep==1" slot="start" (click)="registerStep = 0">
       <ion-icon name="arrow-back-outline"></ion-icon>
     </ion-button> 
   </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding *ngIf="registerStep==0">
   <form [formGroup]="registerForm">
 
   <ion-item>
@@ -51,5 +54,20 @@
 </form>
 
 </ion-content>
+
+<ion-content padding *ngIf="registerStep==1">
+  <form [formGroup]="registerForm">
+    <ion-item>
+      <ion-label position="stacked">Cod invitatie</ion-label>
+      <ion-input type="text" placeholder="cod secret" formControlName="inviteCode"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="activate()">Finalizare</ion-button>
+
+</form>
+
+
+</ion-content>
+
 
 

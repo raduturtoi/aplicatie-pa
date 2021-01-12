@@ -5,7 +5,7 @@ export interface ActivateUserInterface {
     lastName: string;
     birthdate: Date;
     belt: string;
-    email: string;
+    username: string;
     password: string;
     confirmPassword: string;
     code: string;

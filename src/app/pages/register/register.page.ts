@@ -84,5 +84,7 @@ export class RegisterPage implements OnInit {
     speed: 400,
   };
 
-  activate(): void {}
+  activate(): void {
+    
+  }
 }

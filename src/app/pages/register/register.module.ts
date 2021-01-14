@@ -16,7 +16,7 @@ import { CodeInputModule } from 'angular-code-input';
     IonicModule,
     RegisterPageRoutingModule,
     ReactiveFormsModule,
-    CodeInputModule
+    CodeInputModule,
   ],
   declarations: [RegisterPage]
 })

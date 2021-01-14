@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, from, Observable, of } from "rxjs";
+import { BehaviorSubject, from, Observable, of, Subject } from "rxjs";
 import { Storage } from "@ionic/storage";
 import { Router } from "@angular/router";
 import { filter } from "rxjs/operators";
@@ -16,32 +16,23 @@ const TOKEN_KEY = "user-token";
   providedIn: "root",
 })
 export class AuthService {
-  user = new BehaviorSubject(null);
-  private authData = new BehaviorSubject(null);
+  public user: Observable<any>;
+  public authState = new BehaviorSubject(null);
 
   constructor(
     private storage: Storage,
     private router: Router,
     private http: HttpClient
-  ) {
-    // this.loadUser();
-    // this.user = this.authState.asObservable().pipe(
-    //   filter(response => response)
-    // )
+  ) {}
+
+  loadUser(data: any) {
+    this.authState.next(data);
+    this.user = this.authState.asObservable();
   }
 
-  // loadUser(){
-
-  //   this.storage.get(TOKEN_KEY).then(data => {
-  //     console.log('Load user: ' , data);
-  //     if(data) {
-  //       this.authState.next(data);
-  //     }else {
-  //       this.authState.next({username: null, role: null});
-  //     }
-  //   });
-
-  // }
+  setToken(token: string): Promise<any>{
+    return this.storage.set(TOKEN_KEY , token);
+  }
 
   signIn(user: LoginUserInterface): Observable<any> {
     // let email = credentials.email;

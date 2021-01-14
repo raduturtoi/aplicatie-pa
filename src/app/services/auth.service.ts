@@ -1,28 +1,30 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, from, Observable, of } from 'rxjs';
-import { Storage } from '@ionic/storage';
-import { Router } from '@angular/router';
-import { filter } from 'rxjs/operators';
-import { RegisterUserInterface } from '../models/registerUser';
-import { LoginUserInterface } from '../models/loginUser';
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, from, Observable, of } from "rxjs";
+import { Storage } from "@ionic/storage";
+import { Router } from "@angular/router";
+import { filter } from "rxjs/operators";
+import { RegisterUserInterface } from "../models/registerUser";
+import { LoginUserInterface } from "../models/loginUser";
 
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from "@angular/common/http";
+import { environment } from "src/environments/environment";
+import { ActivateUserInterface } from "../models/activateUser";
 
-const TOKEN_KEY = 'user-token';
+const TOKEN_KEY = "user-token";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class AuthService {
-
-  user: Observable<any>;
+  user = new BehaviorSubject(null);
   private authData = new BehaviorSubject(null);
 
-  constructor(private storage: Storage, private router: Router, private http:HttpClient) { 
-
+  constructor(
+    private storage: Storage,
+    private router: Router,
+    private http: HttpClient
+  ) {
     // this.loadUser();
-
     // this.user = this.authState.asObservable().pipe(
     //   filter(response => response)
     // )
@@ -42,36 +44,39 @@ export class AuthService {
   // }
 
   signIn(user: LoginUserInterface): Observable<any> {
-      // let email = credentials.email;
-      // let pw = credentials.pw;
-      // let user = null;
+    // let email = credentials.email;
+    // let pw = credentials.pw;
+    // let user = null;
 
-      // if(email  === 'admin'  &&  pw === 'admin'){
-      //   user = {email , role: 'ADMIN'};
-      // }else if (email  === 'user'  &&  pw === 'user'){
-      //     user = {email , role: 'USER'};
-      //   };
+    // if(email  === 'admin'  &&  pw === 'admin'){
+    //   user = {email , role: 'ADMIN'};
+    // }else if (email  === 'user'  &&  pw === 'user'){
+    //     user = {email , role: 'USER'};
+    //   };
 
-      //   this.authState.next(user);
-        
-      //   this.storage.set(TOKEN_KEY , user);
+    //   this.authState.next(user);
 
-      //   return of(user);
+    //   this.storage.set(TOKEN_KEY , user);
 
-      return this.http.post(environment.apiUrl + "/api/auth/login", user)
-      }
+    //   return of(user);
 
-      async signOut(){
-        await this.storage.set(TOKEN_KEY, null);
-        this.router.navigateByUrl("/login")
-
-      }
-
-      public register(user: RegisterUserInterface): Observable < any >{
-          return this.http.post(environment.apiUrl + "/api/auth/invitation", user)
-      }
-
-
-
+    return this.http.post(environment.apiUrl + "/api/auth/login", user);
   }
- 
+
+  async signOut() {
+    await this.storage.set(TOKEN_KEY, null);
+    this.router.navigateByUrl("/login");
+  }
+
+  public invitation(user: RegisterUserInterface): Observable<any> {
+    return this.http.post(environment.apiUrl + "/api/auth/invitation", user);
+  }
+
+  public register(user: ActivateUserInterface): Observable<any> {
+    return this.http.post(environment.apiUrl + "/api/auth/register", user);
+  }
+
+  public goBack() {
+    this.router.navigateByUrl("/login");
+  }
+}

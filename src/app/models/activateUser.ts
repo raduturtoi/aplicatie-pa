@@ -3,12 +3,12 @@ export interface ActivateUserInterface {
     invitationCode: string,
     firstName: string;
     lastName: string;
-    birthdate: Date;
+    birthDate: Date;
     belt: string;
-    username: string;
+    email: string;
     password: string;
-    confirmPassword: string;
-    code: string;
+    groupId: number;
+ 
 }
     
     

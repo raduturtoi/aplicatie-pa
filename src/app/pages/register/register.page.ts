@@ -48,8 +48,8 @@ export class RegisterPage implements OnInit {
       {
         firstName: ["", Validators.required],
         lastName: ["", Validators.required],
-        birthdate: ["", Validators.required],
-        inviteCode: ["", Validators.required],
+        birthDate: ["", Validators.required],
+        invitationCode: ["", Validators.required],
         email: ["", [Validators.required, Validators.email]],
         password: ["", [Validators.required, Validators.minLength(6)]],
         confirmPassword: ["", [Validators.required, Validators.minLength(6)]],
@@ -67,10 +67,10 @@ export class RegisterPage implements OnInit {
   }
 
   register(): void {
-    this.registerStep++;
-    this.auth.register(this.registerForm.value).subscribe(
+    this.auth.invitation(this.registerForm.value).subscribe(
       (res) => {
-        this.passwordCrypted = res["token"];
+        console.log(res);
+        this.passwordCrypted = res["hash"];
         this.registerStep++;
       },
       (err) => {
@@ -84,7 +84,18 @@ export class RegisterPage implements OnInit {
     speed: 400,
   };
 
-  activate(): void {
-    
+  activate(): void {}
+
+  onCodeCompleted(code: string) {
+    let user = this.registerForm.value;
+    user.invitationHash = this.passwordCrypted;
+    user.invitationCode = code;
+    user.groupId = 1;
+    user.username = user.email;
+
+    this.auth.register(user).subscribe((res) => {
+       this.auth.goBack();
+    });
   }
 }
+

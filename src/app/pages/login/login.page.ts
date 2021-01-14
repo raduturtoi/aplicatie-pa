@@ -26,7 +26,7 @@ export class LoginPage implements OnInit {
         const helper = new JwtHelperService();
         const tokenDecoded = helper.decodeToken(token.token);
 
-        console.log(tokenDecoded);
+        this.auth.user.next(tokenDecoded['role']);
 
         let role =  tokenDecoded['role'];
         if( role == 'ADMIN') {

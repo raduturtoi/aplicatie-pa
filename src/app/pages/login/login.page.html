@@ -1,10 +1,11 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar class="nav-bar" >
     <ion-title>Autentificare</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+<<<<<<< HEAD
 
   <ion-item>
     <ion-label position="stacked">Email</ion-label>
@@ -21,3 +22,24 @@
   <ion-button expand="block" routerLink="/register">Register</ion-button>
 
 </ion-content>
+=======
+  <div class="card center">
+    <div class="card-body">
+      <ion-img src="assets/logo.png"></ion-img>
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input type="email" placeholder="Email" [(ngModel)]="user.email"></ion-input>
+    </ion-item>
+  
+    <ion-item>
+      <ion-label position="stacked">Parola</ion-label>
+      <ion-input type="password" placeholder="" [(ngModel)]="user.pw"></ion-input>
+    </ion-item>
+  <br>
+    <ion-button expand="block" color="secondary" (click)="signIn()">Login</ion-button>
+    <ion-button expand="block" color="primary" >Register</ion-button>
+  </div>
+  </div>
+  
+  </ion-content>
+>>>>>>> aa212100338e30460f0d797717d8bd3524c5e93d

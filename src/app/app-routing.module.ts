@@ -16,7 +16,7 @@ const routes: Routes = [
   {
     path: 'admin-dashboard',
     loadChildren: () => import('./pages/admin-dashboard/admin-dashboard.module').then( m => m.AdminDashboardPageModule),
-    canActivate: [AuthGuard],
+   // canActivate: [AuthGuard],
     data: {
       role: 'ADMIN'
     }
@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'user-dashboard',
     loadChildren: () => import('./pages/user-dashboard/user-dashboard.module').then( m => m.UserDashboardPageModule),
-    canActivate: [AuthGuard],
+    // canActivate: [AuthGuard],
     data: {
       role: 'USER'
     }

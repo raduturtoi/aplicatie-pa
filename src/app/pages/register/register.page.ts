@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { AgeCategory } from "src/app/models/ageCategory";
+import { Group } from "src/app/models/Group";
 import { AuthService } from "src/app/services/auth.service";
 
 @Component({
@@ -14,6 +16,8 @@ export class RegisterPage implements OnInit {
   registerForm: FormGroup;
   maximDate: string;
   minimDate: string;
+  ageCateories: AgeCategory[] = [];
+  groups: Group[] = [];
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -53,11 +57,16 @@ export class RegisterPage implements OnInit {
         email: ["", [Validators.required, Validators.email]],
         password: ["", [Validators.required, Validators.minLength(6)]],
         confirmPassword: ["", [Validators.required, Validators.minLength(6)]],
+        groupId: ["", Validators.required]
       },
       {
         validators: this.password.bind(this),
       }
     );
+
+    this.auth.getAgeCategory().subscribe((res: AgeCategory[]) => {
+      this.ageCateories = res;
+    });
   }
 
   password(formGroup: FormGroup) {
@@ -94,8 +103,14 @@ export class RegisterPage implements OnInit {
     user.username = user.email;
 
     this.auth.register(user).subscribe((res) => {
-       this.auth.goBack();
+      this.auth.goBack();
+    });
+  }
+
+  changeAgeCategory(value: any) {
+    this.auth.getGroup(value).subscribe((res: Group[]) => {
+      this.groups = res;
+      console.log(res);
     });
   }
 }
-

@@ -1,75 +1,103 @@
- <ion-header>
+<ion-header>
   <ion-toolbar color="primary" class="nav-bar">
     <ion-title>Inregistrare</ion-title>
     <ion-button *ngIf="registerStep==0" slot="start" routerLink="/login">
       <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-button> 
+    </ion-button>
     <ion-button *ngIf="registerStep==1" slot="start" (click)="registerStep = 0">
       <ion-icon name="arrow-back-outline"></ion-icon>
-    </ion-button> 
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding *ngIf="registerStep==0">
   <form [formGroup]="registerForm">
+    <ion-item>
+      <ion-label position="stacked">Nume</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Nume"
+        formControlName="lastName"
+      ></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">Nume</ion-label>
-    <ion-input type="text" placeholder="Nume" formControlName="lastName"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Prenume</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Prenume"
+        formControlName="firstName"
+      ></ion-input>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">Prenume</ion-label>
-    <ion-input type="text" placeholder="Prenume" formControlName="firstName"></ion-input>
-  </ion-item>
-  
-  <ion-item>
-    <ion-label position="floating">Data  nasterii</ion-label>
-    <ion-datetime displayFormat="DD/MM/YYYY" [min]="minimDate"  [max]="maximDate" formControlName="birthDate"></ion-datetime>
-  </ion-item>
+    <ion-item>
+      <ion-label position="floating">Data nasterii</ion-label>
+      <ion-datetime
+        displayFormat="DD/MM/YYYY"
+        [min]="minimDate"
+        [max]="maximDate"
+        formControlName="birthDate"
+      ></ion-datetime>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">Email</ion-label>
-    <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>Cateoria de varsta</ion-label>
+      <ion-select #ageCategoryList (ionChange)="changeAgeCategory(ageCategoryList.value)" placeholder="Select One">
+        <ion-select-option *ngFor="let ageCategory of ageCateories" [value]="ageCategory.ageCategoryId">{{ageCategory.categoryName}}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
-  <ion-item>
-    <ion-label position="stacked">Parola</ion-label>
-    <ion-input type="password" placeholder="Parola" formControlName="password"></ion-input>
-  </ion-item>
-  <ion-item>
-    <ion-label position="stacked">Confirma parola</ion-label>
-    <ion-input type="password" placeholder="Confirma Parola" formControlName="confirmPassword"></ion-input>
-  </ion-item>
+    <ion-item>
+      <ion-label>Nivelul grupei</ion-label>
+      <ion-select formControlName="groupId"  #groupList placeholder="Select One">
+        <ion-select-option *ngFor="let group of groups" [value]="group.groupId">{{group.groupName}}</ion-select-option>
+      </ion-select>
+    </ion-item>
 
+    <ion-item>
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input
+        type="email"
+        placeholder="Email"
+        formControlName="email"
+      ></ion-input>
+    </ion-item>
 
-  <ion-button expand="block" (click)="register()">Inregistrare</ion-button>
-  <hr>
-  <div class="error-message" 
-        *ngIf="registerForm.hasError('passwordNotMatch') && 
-               (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
+    <ion-item>
+      <ion-label position="stacked">Parola</ion-label>
+      <ion-input
+        type="password"
+        placeholder="Parola"
+        formControlName="password"
+      ></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label position="stacked">Confirma parola</ion-label>
+      <ion-input
+        type="password"
+        placeholder="Confirma Parola"
+        formControlName="confirmPassword"
+      ></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="register()">Inregistrare</ion-button>
+    <hr />
+    <div
+      class="error-message"
+      *ngIf="registerForm.hasError('passwordNotMatch') && 
+               (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)"
+    >
       Parola si Parola de confirmare nu se potrivesc!
     </div>
-</form>
-
+  </form>
 </ion-content>
 
 <ion-content padding *ngIf="registerStep==1">
   <form [formGroup]="registerForm">
-
-    <h2>Introduceti codul primit pe adresa de email :  </h2>
+    <h2>Introduceti codul primit pe adresa de email :</h2>
     <h2 style="text-align: center">{{ registerForm.value.email }}</h2>
-    
-    <code-input
-    [codeLength]="6"
-    (codeCompleted)="onCodeCompleted($event)">
-</code-input>
-    
 
-</form>
-
-
+    <code-input [codeLength]="6" (codeCompleted)="onCodeCompleted($event)">
+    </code-input>
+  </form>
 </ion-content>
-
-
-

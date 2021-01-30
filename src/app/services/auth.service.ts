@@ -70,4 +70,12 @@ export class AuthService {
   public goBack() {
     this.router.navigateByUrl("/login");
   }
+
+  public getAgeCategory(){
+    return this.http.get(environment.apiUrl + "/api/AgeCategories" );
+  }
+
+  public getGroup(id: any ){
+    return this.http.get(environment.apiUrl + "/api/Groups/" + id);
+  }
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProfileInterface } from 'src/app/models/profile';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -8,13 +9,30 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class UserDashboardPage implements OnInit {
 
+  profile: ProfileInterface;
+
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
+
+    this.auth.getToken().then(res => {
+        
+        this.auth.getData(res["username"]).subscribe((res: ProfileInterface) =>{
+            this.profile=res;
+        })
+    })
+    ;
+
+    // this.auth.getData().subscribe(res => {
+    //   console.log(res);
+    // });
+
   }
 
   signOut(){
     this.auth.signOut();
   }
+
+
 
 }

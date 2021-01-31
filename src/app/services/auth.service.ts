@@ -10,6 +10,7 @@ import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { ActivateUserInterface } from "../models/activateUser";
 import { CompetitionInterface } from "../models/addContest";
+import { UserDashboardPageRoutingModule } from "../pages/user-dashboard/user-dashboard-routing.module";
 
 const TOKEN_KEY = "user-token";
 
@@ -33,6 +34,10 @@ export class AuthService {
 
   setToken(token: string): Promise<any> {
     return this.storage.set(TOKEN_KEY, token);
+  }
+
+  getToken(){
+    return this.storage.get(TOKEN_KEY);
   }
 
   signIn(user: LoginUserInterface): Observable<any> {
@@ -77,6 +82,10 @@ export class AuthService {
 
   public getGroup(id: any) {
     return this.http.get(environment.apiUrl + "/api/Groups/" + id);
+  }
+
+  public getData(username){
+    return this.http.get(environment.apiUrl + "/api/Students/" + username );
   }
 
   public addContest(contest: CompetitionInterface): Observable<any> {

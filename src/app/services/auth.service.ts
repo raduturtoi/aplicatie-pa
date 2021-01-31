@@ -22,7 +22,6 @@ export class AuthService {
   public authState = new BehaviorSubject(null);
 
   constructor(
-    private storage: Storage,
     private router: Router,
     private http: HttpClient
   ) {}
@@ -32,35 +31,21 @@ export class AuthService {
     this.user = this.authState.asObservable();
   }
 
-  setToken(token: string): Promise<any> {
-    return this.storage.set(TOKEN_KEY, token);
+  setToken(token: any){
+    localStorage.setItem(TOKEN_KEY, JSON.stringify(token));
   }
 
   getToken(){
-    return this.storage.get(TOKEN_KEY);
+    return JSON.parse(localStorage.getItem(TOKEN_KEY));
   }
 
   signIn(user: LoginUserInterface): Observable<any> {
-    //   let email = credentials.email;
-    //   let pw = credentials.pw;
-    //   let user = null;
-
-    //   if(email  === 'admin'  &&  pw === 'admin'){
-    //     user = {email , role: 'ADMIN'};
-    //   }else if (email  === 'user'  &&  pw === 'user'){
-    //       user = {email , role: 'USER'};
-    //     };
-
-    //     this.authState.next(user);
-
-    //     this.storage.set(TOKEN_KEY , user);
-    //    return of(user);
-
+    console.log(user);
     return this.http.post(environment.apiUrl + "/api/auth/login", user);
   }
 
   async signOut() {
-    await this.storage.set(TOKEN_KEY, null);
+    localStorage.setItem(TOKEN_KEY, null);
     this.router.navigateByUrl("/login");
   }
 

@@ -16,13 +16,15 @@
       <ion-img src="assets/logo.png"></ion-img>
       <br />
       <ion-item>
-        <h5>{{ profile.firstName }}</h5>
-        <h5>{{ profile.lastName }}</h5>
+        <h5 class="label">Nume:</h5>
+        <h5>{{ profile.firstName }}  {{ profile.lastName }}</h5>
       </ion-item>
       <ion-item>
-        <h5>{{ profile.birthDate | date:'medium'}}</h5>
+        <h5 class="label">Ziua de nastere: </h5>
+        <h5>{{ profile.birthDate | date:'mediumDate'}}</h5>
       </ion-item>
       <ion-item>
+        <h5 class="label">Centura: </h5>
         <h5>{{ profile.belt}}</h5>
       </ion-item>
     </div>

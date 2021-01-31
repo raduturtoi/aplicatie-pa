@@ -6,14 +6,14 @@
 
 <ion-content padding>
   <div class="card center">
-    <div class="card-body">
+    <div [formGroup]="loginForm" class="card-body">
       <ion-img src="assets/logo.png"></ion-img>
       <ion-item>
         <ion-label position="stacked">Email</ion-label>
         <ion-input
           type="email"
           placeholder="Email"
-          [(ngModel)]="user.username"
+          formControlName="username"
         ></ion-input>
       </ion-item>
 
@@ -22,12 +22,12 @@
         <ion-input
           type="password"
           placeholder="Parola"
-          [(ngModel)]="user.password"
+          formControlName="password"
         ></ion-input>
       </ion-item>
       <br />
-      <ion-button expand="block" color="secondary" (click)="signIn()"
-        >Login</ion-button
+      <ion-button expand="block" color="secondary" (click)="signIn()" 
+        [disabled]="!loginForm.valid">Login</ion-button
       >
       <ion-button expand="block" color="primary" routerLink="/register"
         >Register</ion-button

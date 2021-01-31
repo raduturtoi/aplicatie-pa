@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { AuthService } from "./../../services/auth.service";
@@ -9,21 +10,27 @@ import { AuthService } from "./../../services/auth.service";
   styleUrls: ["./login.page.scss"],
 })
 export class LoginPage implements OnInit {
-  user = {
-    username: "",
-    password: "",
-  };
+  public loginForm: FormGroup;
+  constructor(
+      private auth: AuthService, 
+      private router: Router,
+      private fb: FormBuilder) {}
 
-  constructor(private auth: AuthService, private router: Router) {}
-
-  ngOnInit() {}
+  ngOnInit() {
+    this.loginForm = this.fb.group(
+      {
+        username: ["", Validators.required],
+        password: ["", Validators.required],
+      }
+    );
+  }
 
   signIn() {
-    this.auth.signIn(this.user).subscribe((token) => {
+    this.auth.signIn(this.loginForm.value).subscribe((token) => {
       const helper = new JwtHelperService();
       const tokenDecoded = helper.decodeToken(token.token);
       const role = tokenDecoded["role"];
-      
+
       this.auth.setToken(tokenDecoded);
       this.auth.loadUser(tokenDecoded);
 

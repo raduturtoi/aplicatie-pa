@@ -109,8 +109,7 @@
     <div
       class="error-message"
       *ngIf="registerForm.hasError('passwordNotMatch') && 
-               (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)"
-    >
+               (registerForm.get('confirmPassword').dirty || registerForm.get('confirmPassword').touched)">
       Parola si Parola de confirmare nu se potrivesc!
     </div>
   </form>

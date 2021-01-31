@@ -14,19 +14,11 @@ export class UserDashboardPage implements OnInit {
   constructor(private auth: AuthService) { }
 
   ngOnInit() {
-
-    this.auth.getToken().then(res => {
-        
-        this.auth.getData(res["username"]).subscribe((res: ProfileInterface) =>{
-            this.profile=res;
-        })
+    let res = this.auth.getToken();
+    console.log(res);
+    this.auth.getData(res["username"]).subscribe((res: ProfileInterface) =>{
+        this.profile=res;
     })
-    ;
-
-    // this.auth.getData().subscribe(res => {
-    //   console.log(res);
-    // });
-
   }
 
   signOut(){

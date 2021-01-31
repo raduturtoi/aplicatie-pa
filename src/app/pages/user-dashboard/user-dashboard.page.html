@@ -11,15 +11,19 @@
 </ion-header>
 
 <ion-content padding>
-  <div class="card center">
+  <div class="card center" *ngIf=profile>
     <div class="card-body">
       <ion-img src="assets/logo.png"></ion-img>
       <br />
       <ion-item>
-        <p>{{ profile.firstName }}</p>
-        <p>{{ profile.lastName }}</p>
-        <p>{{ profile.birthDate }}</p>
-        <p>{{ profile.belt}}</p>
+        <h5>{{ profile.firstName }}</h5>
+        <h5>{{ profile.lastName }}</h5>
+      </ion-item>
+      <ion-item>
+        <h5>{{ profile.birthDate | date:'medium'}}</h5>
+      </ion-item>
+      <ion-item>
+        <h5>{{ profile.belt}}</h5>
       </ion-item>
     </div>
   </div>

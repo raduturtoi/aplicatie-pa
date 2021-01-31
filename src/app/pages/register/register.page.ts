@@ -18,6 +18,7 @@ export class RegisterPage implements OnInit {
   minimDate: string;
   ageCateories: AgeCategory[] = [];
   groups: Group[] = [];
+  belt: string;
   constructor(
     private fb: FormBuilder,
     private auth: AuthService,
@@ -57,7 +58,8 @@ export class RegisterPage implements OnInit {
         email: ["", [Validators.required, Validators.email]],
         password: ["", [Validators.required, Validators.minLength(6)]],
         confirmPassword: ["", [Validators.required, Validators.minLength(6)]],
-        groupId: ["", Validators.required]
+        groupId: ["", Validators.required],
+        belt: ["",Validators.required]
       },
       {
         validators: this.password.bind(this),

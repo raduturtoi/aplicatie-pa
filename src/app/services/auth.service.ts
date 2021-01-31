@@ -9,8 +9,7 @@ import { LoginUserInterface } from "../models/loginUser";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { ActivateUserInterface } from "../models/activateUser";
-import {CompetitionInterface } from "../models/addContest";
-
+import { CompetitionInterface } from "../models/addContest";
 
 const TOKEN_KEY = "user-token";
 
@@ -32,26 +31,25 @@ export class AuthService {
     this.user = this.authState.asObservable();
   }
 
-  setToken(token: string): Promise<any>{
-    return this.storage.set(TOKEN_KEY , token);
+  setToken(token: string): Promise<any> {
+    return this.storage.set(TOKEN_KEY, token);
   }
 
   signIn(user: LoginUserInterface): Observable<any> {
-    // let email = credentials.email;
-    // let pw = credentials.pw;
-    // let user = null;
+    //   let email = credentials.email;
+    //   let pw = credentials.pw;
+    //   let user = null;
 
-    // if(email  === 'admin'  &&  pw === 'admin'){
-    //   user = {email , role: 'ADMIN'};
-    // }else if (email  === 'user'  &&  pw === 'user'){
-    //     user = {email , role: 'USER'};
-    //   };
+    //   if(email  === 'admin'  &&  pw === 'admin'){
+    //     user = {email , role: 'ADMIN'};
+    //   }else if (email  === 'user'  &&  pw === 'user'){
+    //       user = {email , role: 'USER'};
+    //     };
 
-    //   this.authState.next(user);
+    //     this.authState.next(user);
 
-    //   this.storage.set(TOKEN_KEY , user);
-
-    //   return of(user);
+    //     this.storage.set(TOKEN_KEY , user);
+    //    return of(user);
 
     return this.http.post(environment.apiUrl + "/api/auth/login", user);
   }
@@ -73,19 +71,19 @@ export class AuthService {
     this.router.navigateByUrl("/login");
   }
 
-  public getAgeCategory(){
-    return this.http.get(environment.apiUrl + "/api/AgeCategories" );
+  public getAgeCategory() {
+    return this.http.get(environment.apiUrl + "/api/AgeCategories");
   }
 
-  public getGroup(id: any ){
+  public getGroup(id: any) {
     return this.http.get(environment.apiUrl + "/api/Groups/" + id);
   }
 
-  public  addContest(contest: CompetitionInterface): Observable<any> {
+  public addContest(contest: CompetitionInterface): Observable<any> {
     return this.http.post(environment.apiUrl + "/api/Competitions", contest);
   }
 
-  public getContests(){
-    return this.http.get(environment.apiUrl + "/api/Competitions" );
+  public getContests() {
+    return this.http.get(environment.apiUrl + "/api/Competitions");
   }
 }

@@ -1,0 +1,53 @@
+<ion-header>
+  <ion-toolbar color="primary" class="nav-bar">
+    <ion-button slot="start" routerLink="/admin-dashboard">
+      <ion-icon name="arrow-back-outline"></ion-icon>
+    </ion-button>
+    <ion-title>add-contest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="contestForm">
+    <ion-item>
+      <ion-label position="stacked">Nume Concurs</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Nume Concurs"
+        formControlName="competitionName"
+      ></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de incepere</ion-label>
+      <ion-datetime
+        displayFormat="DD/MM/YYYY"
+        [min]="minimDate"
+        [max]="maximDate"
+        formControlName="startTime"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="floating">Data de sfarsit</ion-label>
+      <ion-datetime
+        displayFormat="DD/MM/YYYY"
+        [min]="minimDate"
+        [max]="maximDate"
+        formControlName="endTime"
+      ></ion-datetime>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Descriere</ion-label>
+      <ion-input
+        type="text"
+        placeholder="Descriere"
+        formControlName="description"
+      ></ion-input>
+    </ion-item>
+  </form>
+
+  <ion-button expand="block" color="secondary" (click)="addContest()">Adauga Concursul</ion-button>
+
+</ion-content>

@@ -9,6 +9,8 @@ import { LoginUserInterface } from "../models/loginUser";
 import { HttpClient } from "@angular/common/http";
 import { environment } from "src/environments/environment";
 import { ActivateUserInterface } from "../models/activateUser";
+import {CompetitionInterface } from "../models/addContest";
+
 
 const TOKEN_KEY = "user-token";
 
@@ -77,5 +79,13 @@ export class AuthService {
 
   public getGroup(id: any ){
     return this.http.get(environment.apiUrl + "/api/Groups/" + id);
+  }
+
+  public  addContest(contest: CompetitionInterface): Observable<any> {
+    return this.http.post(environment.apiUrl + "/api/Competitions", contest);
+  }
+
+  public getContests(){
+    return this.http.get(environment.apiUrl + "/api/Competitions" );
   }
 }

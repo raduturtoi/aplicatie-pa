@@ -33,6 +33,15 @@ const routes: Routes = [
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
   },
+  
+  {
+    path: 'add-contest',
+    loadChildren: () => import('./pages/admin-dashboard/pages/add-contest/add-contest.module').then( m => m.AddContestPageModule)
+  },  {
+    path: 'view-contests',
+    loadChildren: () => import('./pages/view-contests/view-contests.module').then( m => m.ViewContestsPageModule)
+  },
+
 
 ];
 

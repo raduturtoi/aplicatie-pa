@@ -18,6 +18,6 @@ import { CodeInputModule } from 'angular-code-input';
     ReactiveFormsModule,
     CodeInputModule,
   ],
-  declarations: [RegisterPage]
+  declarations: [RegisterPage] 
 })
 export class RegisterPageModule {}

@@ -112,5 +112,5 @@ export class RegisterPage implements OnInit {
       this.groups = res;
       console.log(res);
     });
-  }
+  } 
 }

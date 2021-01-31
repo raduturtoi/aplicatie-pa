@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar class="nav-bar">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>view-contest</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let contest of competitions">
+    <ion-card-header>
+      <ion-card-title>{{ contest.competitionName }}</ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <h5>start date : {{contest.startTime | date:'medium'}}</h5>
+      <h5>end date: {{contest.endTime | date: 'medium'}}</h5>
+      <p>descriere:{{contest.description}}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

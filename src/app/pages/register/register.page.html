@@ -13,7 +13,7 @@
 <ion-content padding *ngIf="registerStep==0">
   <form [formGroup]="registerForm">
     <ion-item>
-      <ion-label position="stacked">Nume</ion-label>
+      <ion-label position="stacked">Nume</ion-label> 
       <ion-input
         type="text"
         placeholder="Nume"
@@ -42,15 +42,25 @@
 
     <ion-item>
       <ion-label>Cateoria de varsta</ion-label>
-      <ion-select #ageCategoryList (ionChange)="changeAgeCategory(ageCategoryList.value)" placeholder="Select One">
-        <ion-select-option *ngFor="let ageCategory of ageCateories" [value]="ageCategory.ageCategoryId">{{ageCategory.categoryName}}</ion-select-option>
+      <ion-select
+        #ageCategoryList
+        (ionChange)="changeAgeCategory(ageCategoryList.value)"
+        placeholder="Select One"
+      >
+        <ion-select-option
+          *ngFor="let ageCategory of ageCateories"
+          [value]="ageCategory.ageCategoryId"
+          >{{ageCategory.categoryName}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
 
     <ion-item>
       <ion-label>Nivelul grupei</ion-label>
-      <ion-select formControlName="groupId"  #groupList placeholder="Select One">
-        <ion-select-option *ngFor="let group of groups" [value]="group.groupId">{{group.groupName}}</ion-select-option>
+      <ion-select formControlName="groupId" #groupList placeholder="Select One">
+        <ion-select-option *ngFor="let group of groups" [value]="group.groupId"
+          >{{group.groupName}}</ion-select-option
+        >
       </ion-select>
     </ion-item>
 
